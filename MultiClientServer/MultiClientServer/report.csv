@@ -1,0 +1,941 @@
+Onderdeel;Corrects;Attempts;Punten;Max
+std-Opstarten;0;3;0;4
+std-Connect;0;0;0;1
+std-Disconnect;0;0;0;1
+std-Berichten;0;0;0;1
+std-BerichtNaVerandering;0;0;0;0.5
+std-NetwerkPartitie;0;0;0;1
+Opstarten;0;6;0;4
+Connect;0;0;0;1
+Disconnect;0;0;0;1
+Berichten;0;0;0;1
+BerichtNaVerandering;0;0;0;0.5
+NetwerkPartitie;0;0;0;1
+BovenLimiet;0;1;0;1
+Totaal;-;-;0;(van 18)
+
+Let op: deze berekening is niet het definitieve cijfer. Dit is alleen maar een automatisch gegenereerde score voor het testbare gedeelte, en het staat nog niet vast dat we dit bij de beoordeling gebruiken.
+
+------------------------------------
+
+Testcase;Status;Tijd;Omschrijving
+Standaard;Error;14.59;Opstarten netwerk
+Random;Error;14.52;Opstarten netwerk
+2xStandaard;Error;14.85;Opstarten netwerk
+Lijn-netwerk;Error;14.67;Opstarten netwerk
+Connected;Error;14.69;Opstarten netwerk
+Standaard;Error;14.63;Opstarten netwerk
+Random;Error;14.65;Opstarten netwerk
+2xStandaard;Error;14.73;Opstarten netwerk
+Lijn-netwerk;Error;14.48;Opstarten netwerk
+Standaard;Incorrect;9.50;Opstarten netwerk
+
+------------------------------------
+
+1;Standaard;Error;14.59;Opstarten netwerk
+Test 1 - Standaard
+
+Process 55500 gercasht met foutmelding:
+
+Log
+start MultiClientServer.exe 55500 55501 55502
+start MultiClientServer.exe 55501 55500 55502
+start MultiClientServer.exe 55502 55500 55501 55503 55504
+start MultiClientServer.exe 55503 55502 55505
+start MultiClientServer.exe 55504 55502 55505
+start MultiClientServer.exe 55505 55503 55504
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55501 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55500 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+2;Random;Error;14.52;Opstarten netwerk
+Test 2 - Random
+
+Process 55505 gercasht met foutmelding:
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at MultiClientServer.Program.Main(String[] args) in C:\Users\Xhino\Documents\Visual Studio 2017\Projects\Concurrency\MultiClientServer\MultiClientServer\Program.cs:line 26
+
+Log
+start MultiClientServer.exe 55500 55501 55502 55503 55506 55507
+start MultiClientServer.exe 55501 55500 55502 55504 55505 55506
+start MultiClientServer.exe 55502 55500 55501 55504
+start MultiClientServer.exe 55503 55500 55504 55505 55506 55508
+start MultiClientServer.exe 55504 55501 55502 55503 55506
+start MultiClientServer.exe 55505 55501 55503 55506
+start MultiClientServer.exe 55506 55500 55501 55503 55504 55505 55507
+start MultiClientServer.exe 55507 55500 55506
+start MultiClientServer.exe 55508 55503
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55500 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55501 < Op welke poort ben ik server?
+55506 < Op welke poort ben ik server?
+55508 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55507 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+Process 55506:
+> R
+Op welke poort ben ik server?
+
+Process 55507:
+> R
+Op welke poort ben ik server?
+
+Process 55508:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+3;2xStandaard;Error;14.85;Opstarten netwerk
+Test 3 - 2xStandaard
+
+Process 55501 gercasht met foutmelding:
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at MultiClientServer.Program.Main(String[] args) in C:\Users\Xhino\Documents\Visual Studio 2017\Projects\Concurrency\MultiClientServer\MultiClientServer\Program.cs:line 26
+
+Log
+start MultiClientServer.exe 55500 55501 55502
+start MultiClientServer.exe 55501 55500 55502
+start MultiClientServer.exe 55502 55500 55501 55503 55504
+start MultiClientServer.exe 55503 55502 55505
+start MultiClientServer.exe 55504 55502 55505
+start MultiClientServer.exe 55505 55503 55504
+start MultiClientServer.exe 55506 55507 55508
+start MultiClientServer.exe 55507 55506 55508
+start MultiClientServer.exe 55508 55506 55507 55509 55510
+start MultiClientServer.exe 55509 55508 55511
+start MultiClientServer.exe 55510 55508 55511
+start MultiClientServer.exe 55511 55509 55510
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55509 > R
+55510 > R
+55511 > R
+55500 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55506 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+55509 < Op welke poort ben ik server?
+55511 < Op welke poort ben ik server?
+55507 < Op welke poort ben ik server?
+55510 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+55508 < Op welke poort ben ik server?
+55501 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+Process 55506:
+> R
+Op welke poort ben ik server?
+
+Process 55507:
+> R
+Op welke poort ben ik server?
+
+Process 55508:
+> R
+Op welke poort ben ik server?
+
+Process 55509:
+> R
+Op welke poort ben ik server?
+
+Process 55510:
+> R
+Op welke poort ben ik server?
+
+Process 55511:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+4;Lijn-netwerk;Error;14.67;Opstarten netwerk
+Test 4 - Lijn-netwerk
+
+Process 55502 gercasht met foutmelding:
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at MultiClientServer.Program.Main(String[] args) in C:\Users\Xhino\Documents\Visual Studio 2017\Projects\Concurrency\MultiClientServer\MultiClientServer\Program.cs:line 26
+
+Log
+start MultiClientServer.exe 55500 55501
+start MultiClientServer.exe 55501 55500 55502
+start MultiClientServer.exe 55502 55501 55503
+start MultiClientServer.exe 55503 55502 55504
+start MultiClientServer.exe 55504 55503 55505
+start MultiClientServer.exe 55505 55504 55506
+start MultiClientServer.exe 55506 55505 55507
+start MultiClientServer.exe 55507 55506 55508
+start MultiClientServer.exe 55508 55507 55509
+start MultiClientServer.exe 55509 55508 55510
+start MultiClientServer.exe 55510 55509 55511
+start MultiClientServer.exe 55511 55510 55512
+start MultiClientServer.exe 55512 55511 55513
+start MultiClientServer.exe 55513 55512 55514
+start MultiClientServer.exe 55514 55513
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55509 > R
+55510 > R
+55511 > R
+55512 > R
+55513 > R
+55514 > R
+55500 < Op welke poort ben ik server?
+55501 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+55507 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55514 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55513 < Op welke poort ben ik server?
+55509 < Op welke poort ben ik server?
+55510 < Op welke poort ben ik server?
+55508 < Op welke poort ben ik server?
+55512 < Op welke poort ben ik server?
+55506 < Op welke poort ben ik server?
+55511 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+Process 55506:
+> R
+Op welke poort ben ik server?
+
+Process 55507:
+> R
+Op welke poort ben ik server?
+
+Process 55508:
+> R
+Op welke poort ben ik server?
+
+Process 55509:
+> R
+Op welke poort ben ik server?
+
+Process 55510:
+> R
+Op welke poort ben ik server?
+
+Process 55511:
+> R
+Op welke poort ben ik server?
+
+Process 55512:
+> R
+Op welke poort ben ik server?
+
+Process 55513:
+> R
+Op welke poort ben ik server?
+
+Process 55514:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+5;Connected;Error;14.69;Opstarten netwerk
+Test 5 - Connected
+
+Process 55515 gercasht met foutmelding:
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at MultiClientServer.Program.Main(String[] args) in C:\Users\Xhino\Documents\Visual Studio 2017\Projects\Concurrency\MultiClientServer\MultiClientServer\Program.cs:line 26
+
+Log
+start MultiClientServer.exe 55500 55501 55502 55503 55504 55505 55506 55507 55508 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55501 55500 55502 55503 55504 55505 55506 55507 55508 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55502 55500 55501 55503 55504 55505 55506 55507 55508 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55503 55500 55501 55502 55504 55505 55506 55507 55508 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55504 55500 55501 55502 55503 55505 55506 55507 55508 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55505 55500 55501 55502 55503 55504 55506 55507 55508 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55506 55500 55501 55502 55503 55504 55505 55507 55508 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55507 55500 55501 55502 55503 55504 55505 55506 55508 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55508 55500 55501 55502 55503 55504 55505 55506 55507 55509 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55509 55500 55501 55502 55503 55504 55505 55506 55507 55508 55510 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55510 55500 55501 55502 55503 55504 55505 55506 55507 55508 55509 55511 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55511 55500 55501 55502 55503 55504 55505 55506 55507 55508 55509 55510 55512 55513 55514 55515 55516
+start MultiClientServer.exe 55512 55500 55501 55502 55503 55504 55505 55506 55507 55508 55509 55510 55511 55513 55514 55515 55516
+start MultiClientServer.exe 55513 55500 55501 55502 55503 55504 55505 55506 55507 55508 55509 55510 55511 55512 55514 55515 55516
+start MultiClientServer.exe 55514 55500 55501 55502 55503 55504 55505 55506 55507 55508 55509 55510 55511 55512 55513 55515 55516
+start MultiClientServer.exe 55515 55500 55501 55502 55503 55504 55505 55506 55507 55508 55509 55510 55511 55512 55513 55514 55516
+start MultiClientServer.exe 55516 55500 55501 55502 55503 55504 55505 55506 55507 55508 55509 55510 55511 55512 55513 55514 55515
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55509 > R
+55510 > R
+55511 > R
+55512 > R
+55513 > R
+55514 > R
+55515 > R
+55516 > R
+55504 < Op welke poort ben ik server?
+55501 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+55500 < Op welke poort ben ik server?
+55506 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55507 < Op welke poort ben ik server?
+55508 < Op welke poort ben ik server?
+55509 < Op welke poort ben ik server?
+55511 < Op welke poort ben ik server?
+55512 < Op welke poort ben ik server?
+55514 < Op welke poort ben ik server?
+55513 < Op welke poort ben ik server?
+55510 < Op welke poort ben ik server?
+55516 < Op welke poort ben ik server?
+55515 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+Process 55506:
+> R
+Op welke poort ben ik server?
+
+Process 55507:
+> R
+Op welke poort ben ik server?
+
+Process 55508:
+> R
+Op welke poort ben ik server?
+
+Process 55509:
+> R
+Op welke poort ben ik server?
+
+Process 55510:
+> R
+Op welke poort ben ik server?
+
+Process 55511:
+> R
+Op welke poort ben ik server?
+
+Process 55512:
+> R
+Op welke poort ben ik server?
+
+Process 55513:
+> R
+Op welke poort ben ik server?
+
+Process 55514:
+> R
+Op welke poort ben ik server?
+
+Process 55515:
+> R
+Op welke poort ben ik server?
+
+Process 55516:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+6;Standaard;Error;14.63;Opstarten netwerk
+Test 6 - Standaard
+
+Process 55500 gercasht met foutmelding:
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+
+Log
+start MultiClientServer.exe 55500 55501 55502
+start MultiClientServer.exe 55501 55500 55502
+start MultiClientServer.exe 55502 55500 55501 55503 55504
+start MultiClientServer.exe 55503 55502 55505
+start MultiClientServer.exe 55504 55502 55505
+start MultiClientServer.exe 55505 55503 55504
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55501 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55500 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+7;Random;Error;14.65;Opstarten netwerk
+Test 7 - Random
+
+Process 55501 gercasht met foutmelding:
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at MultiClientServer.Program.Main(String[] args) in C:\Users\Xhino\Documents\Visual Studio 2017\Projects\Concurrency\MultiClientServer\MultiClientServer\Program.cs:line 26
+
+Log
+start MultiClientServer.exe 55500 55502 55507 55508
+start MultiClientServer.exe 55501 55503 55505 55507 55508
+start MultiClientServer.exe 55502 55500 55504
+start MultiClientServer.exe 55503 55501 55504 55505 55506 55507 55508
+start MultiClientServer.exe 55504 55502 55503 55505 55506 55507
+start MultiClientServer.exe 55505 55501 55503 55504 55506 55507
+start MultiClientServer.exe 55506 55503 55504 55505 55507
+start MultiClientServer.exe 55507 55500 55501 55503 55504 55505 55506 55508
+start MultiClientServer.exe 55508 55500 55501 55503 55507
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55500 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55506 < Op welke poort ben ik server?
+55508 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+55507 < Op welke poort ben ik server?
+55501 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+Process 55506:
+> R
+Op welke poort ben ik server?
+
+Process 55507:
+> R
+Op welke poort ben ik server?
+
+Process 55508:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+8;2xStandaard;Error;14.73;Opstarten netwerk
+Test 8 - 2xStandaard
+
+Process 55505 gercasht met foutmelding:
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at MultiClientServer.Program.Main(String[] args) in C:\Users\Xhino\Documents\Visual Studio 2017\Projects\Concurrency\MultiClientServer\MultiClientServer\Program.cs:line 26
+
+Log
+start MultiClientServer.exe 55500 55501 55502
+start MultiClientServer.exe 55501 55500 55502
+start MultiClientServer.exe 55502 55500 55501 55503 55504
+start MultiClientServer.exe 55503 55502 55505
+start MultiClientServer.exe 55504 55502 55505
+start MultiClientServer.exe 55505 55503 55504
+start MultiClientServer.exe 55506 55507 55508
+start MultiClientServer.exe 55507 55506 55508
+start MultiClientServer.exe 55508 55506 55507 55509 55510
+start MultiClientServer.exe 55509 55508 55511
+start MultiClientServer.exe 55510 55508 55511
+start MultiClientServer.exe 55511 55509 55510
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55509 > R
+55510 > R
+55511 > R
+55500 < Op welke poort ben ik server?
+55501 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55506 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+55508 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55511 < Op welke poort ben ik server?
+55510 < Op welke poort ben ik server?
+55507 < Op welke poort ben ik server?
+55509 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+Process 55506:
+> R
+Op welke poort ben ik server?
+
+Process 55507:
+> R
+Op welke poort ben ik server?
+
+Process 55508:
+> R
+Op welke poort ben ik server?
+
+Process 55509:
+> R
+Op welke poort ben ik server?
+
+Process 55510:
+> R
+Op welke poort ben ik server?
+
+Process 55511:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+9;Lijn-netwerk;Error;14.48;Opstarten netwerk
+Test 9 - Lijn-netwerk
+
+Process 55500 gercasht met foutmelding:
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+
+Log
+start MultiClientServer.exe 55500 55501
+start MultiClientServer.exe 55501 55500 55502
+start MultiClientServer.exe 55502 55501 55503
+start MultiClientServer.exe 55503 55502 55504
+start MultiClientServer.exe 55504 55503 55505
+start MultiClientServer.exe 55505 55504 55506
+start MultiClientServer.exe 55506 55505 55507
+start MultiClientServer.exe 55507 55506 55508
+start MultiClientServer.exe 55508 55507 55509
+start MultiClientServer.exe 55509 55508 55510
+start MultiClientServer.exe 55510 55509 55511
+start MultiClientServer.exe 55511 55510 55512
+start MultiClientServer.exe 55512 55511 55513
+start MultiClientServer.exe 55513 55512 55514
+start MultiClientServer.exe 55514 55513
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55509 > R
+55510 > R
+55511 > R
+55512 > R
+55513 > R
+55514 > R
+55503 < Op welke poort ben ik server?
+55501 < Op welke poort ben ik server?
+55502 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+55506 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55510 < Op welke poort ben ik server?
+55508 < Op welke poort ben ik server?
+55512 < Op welke poort ben ik server?
+55509 < Op welke poort ben ik server?
+55507 < Op welke poort ben ik server?
+55514 < Op welke poort ben ik server?
+55511 < Op welke poort ben ik server?
+55500 < Op welke poort ben ik server?
+55513 < Op welke poort ben ik server?
+
+Process 55500:
+> R
+Op welke poort ben ik server?
+
+Process 55501:
+> R
+Op welke poort ben ik server?
+
+Process 55502:
+> R
+Op welke poort ben ik server?
+
+Process 55503:
+> R
+Op welke poort ben ik server?
+
+Process 55504:
+> R
+Op welke poort ben ik server?
+
+Process 55505:
+> R
+Op welke poort ben ik server?
+
+Process 55506:
+> R
+Op welke poort ben ik server?
+
+Process 55507:
+> R
+Op welke poort ben ik server?
+
+Process 55508:
+> R
+Op welke poort ben ik server?
+
+Process 55509:
+> R
+Op welke poort ben ik server?
+
+Process 55510:
+> R
+Op welke poort ben ik server?
+
+Process 55511:
+> R
+Op welke poort ben ik server?
+
+Process 55512:
+> R
+Op welke poort ben ik server?
+
+Process 55513:
+> R
+Op welke poort ben ik server?
+
+Process 55514:
+> R
+Op welke poort ben ik server?
+
+------------------------------------
+
+10;Standaard;Incorrect;9.50;Opstarten netwerk
+Test 10 - Standaard
+
+Fout bij opzetten netwerk - de routing-tabel is incorrect.
+Het programma ziet de verbinding van 55500 naar 55501 niet.
+Het programma ziet de verbinding van 55500 naar 55502 niet.
+Het programma ziet de verbinding van 55500 naar 55503 niet.
+Het programma ziet de verbinding van 55500 naar 55504 niet.
+Het programma ziet de verbinding van 55500 naar 55505 niet.
+Het programma ziet de verbinding van 55501 naar 55500 niet.
+Het programma ziet de verbinding van 55501 naar 55502 niet.
+Het programma ziet de verbinding van 55501 naar 55503 niet.
+Het programma ziet de verbinding van 55501 naar 55504 niet.
+Het programma ziet de verbinding van 55501 naar 55505 niet.
+Het programma ziet de verbinding van 55502 naar 55500 niet.
+Het programma ziet de verbinding van 55502 naar 55501 niet.
+Het programma ziet de verbinding van 55502 naar 55503 niet.
+Het programma ziet de verbinding van 55502 naar 55504 niet.
+Het programma ziet de verbinding van 55502 naar 55505 niet.
+Het programma ziet de verbinding van 55503 naar 55500 niet.
+Het programma ziet de verbinding van 55503 naar 55501 niet.
+Het programma ziet de verbinding van 55503 naar 55502 niet.
+Het programma ziet de verbinding van 55503 naar 55504 niet.
+Het programma ziet de verbinding van 55503 naar 55505 niet.
+Het programma ziet de verbinding van 55504 naar 55500 niet.
+Het programma ziet de verbinding van 55504 naar 55501 niet.
+Het programma ziet de verbinding van 55504 naar 55502 niet.
+Het programma ziet de verbinding van 55504 naar 55503 niet.
+Het programma ziet de verbinding van 55504 naar 55505 niet.
+Het programma ziet de verbinding van 55505 naar 55500 niet.
+Het programma ziet de verbinding van 55505 naar 55501 niet.
+Het programma ziet de verbinding van 55505 naar 55502 niet.
+Het programma ziet de verbinding van 55505 naar 55503 niet.
+Het programma ziet de verbinding van 55505 naar 55504 niet.
+
+Log
+start MultiClientServer.exe 55500 55501 55502
+start MultiClientServer.exe 55501 55500 55502
+start MultiClientServer.exe 55502 55500 55501 55503 55504
+start MultiClientServer.exe 55503 55502 55505
+start MultiClientServer.exe 55504 55502 55505
+start MultiClientServer.exe 55505 55503 55504
+55502 < Op welke poort ben ik server?
+55500 < Op welke poort ben ik server?
+55501 < Op welke poort ben ik server?
+55504 < Op welke poort ben ik server?
+55505 < Op welke poort ben ik server?
+55503 < Op welke poort ben ik server?
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+
+Process 55500:
+Op welke poort ben ik server?
+> R
+
+Process 55501:
+Op welke poort ben ik server?
+> R
+
+Process 55502:
+Op welke poort ben ik server?
+> R
+
+Process 55503:
+Op welke poort ben ik server?
+> R
+
+Process 55504:
+Op welke poort ben ik server?
+> R
+
+Process 55505:
+Op welke poort ben ik server?
+> R
+
+Microsoft Windows NT 6.2.9200.0 (x64)
+.NET version: 4.0.30319.42000
+2 physical core(s), 4 virtual core(s) (hyperthreading), 1 processor(s)
