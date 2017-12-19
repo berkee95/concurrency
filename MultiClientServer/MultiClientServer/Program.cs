@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 
 namespace MultiClientServer
 {
@@ -16,6 +17,7 @@ namespace MultiClientServer
         static public Dictionary<int, Dictionary<int, int>> NeighbourTable = new Dictionary<int, Dictionary<int, int>>();
         static public Dictionary<int, int> PersonalTable = new Dictionary<int, int>();
         static public Dictionary<int, int> PrefNeighbour = new Dictionary<int, int>();
+        static public object Locker = new object();
         // PrefNeighbour = {destination, neighbour} Dictionary** (key: destination) or List 
         // DistanceNeighbour (D.w[v]) = {destination, distance} * Neighbours (for one destination v) 
         // DistanceYou (D.u[v]) = {destination, distance} Dictionary (key: destination)
@@ -55,6 +57,8 @@ namespace MultiClientServer
 
             PersonalTable[MijnPoort] = 0;
             PrefNeighbour[MijnPoort] = MijnPoort; // local
+
+            //Buren.Add(0, new Connection(i));
 
             foreach (int neighbour in Buren.Keys) // Send message to all neighbours about itself
                 Buren[neighbour].Write.WriteLine(MijnPoort.ToString() + " " + MijnPoort.ToString() + " " + "0");
@@ -156,13 +160,19 @@ namespace MultiClientServer
 
                 if (distance < Network.Length)
                 {
-                    PersonalTable[destination] = distance;
-                    PrefNeighbour[destination] = route;
+                    lock (Locker)
+                    {
+                        PersonalTable[destination] = distance;
+                        PrefNeighbour[destination] = route;
+                    }
                 }
                 else // Node not connected to network
                 {
-                    PersonalTable[destination] = Network.Length;
-                    PrefNeighbour[destination] = 404; // null
+                    lock (Locker)
+                    {
+                        PersonalTable[destination] = Network.Length;
+                        PrefNeighbour[destination] = 404; // null
+                    }
                 }
             }
 
