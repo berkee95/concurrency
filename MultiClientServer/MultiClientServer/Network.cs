@@ -60,18 +60,18 @@ namespace MultiClientServer
         // Retries connections 
         private void Connector(int port)
         {
-            bool retry = true;
-            while (retry)
+            if (Program.MijnPoort < port) // Only connect with ports bigger than itself
             {
-                try
+                bool retry = true;
+                while (retry)
                 {
-                    if (Program.MijnPoort < port) // Only connect with ports bigger than itself
+                    try
                     {
                         Program.Buren.Add(port, new Connection(port)); // Possible exception is thrown here
-                        retry = false; // Cannot be reached unless there is no exception
+                        retry = false; // Cannot be reached unless there is no exception         
                     }
+                    catch { Thread.Sleep(50); } // Pauses for short period before retrying
                 }
-                catch { Thread.Sleep(50); } // Pauses for short period before retrying
             }
         }
     }
