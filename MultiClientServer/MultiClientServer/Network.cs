@@ -7,7 +7,10 @@ using System.Threading;
 namespace MultiClientServer
 {
     class Network
+
     {
+        List<int> receivednetwork = new List<int>();
+
         public void Builder()
         {
             string[] inputports = Console.ReadLine().Split(' ');
@@ -18,7 +21,7 @@ namespace MultiClientServer
                 connectedports[i] = int.Parse(inputports[i + 1]); // Exclude own port
 
             foreach (string port in inputports)
-                Program.Networkk.Add(int.Parse(port));
+                Program.Network.Add(int.Parse(port));
 
             new Server(Program.MijnPoort); // maybe move to another class
             Console.Title = Program.MijnPoort.ToString();
@@ -27,27 +30,17 @@ namespace MultiClientServer
             foreach (int port in connectedports)
                 Connector(port);
 
-            // Send message with Network list info to all neighbours
-            foreach (int neighbour in Program.Buren.Keys) // put // net here (after neighbour)
-                foreach (int node in Program.Networkk)
-                    Program.Buren[neighbour].Write.Write("// net {0} {1}", node, Program.Networkk.Count);
+            //// Build list to string
+            //string nodes = ListToString(Program.Network);
 
+            //// Send message with Network list info to all neighbours
+            //foreach (int neighbour in Program.Buren.Keys) 
+            //    Program.Buren[neighbour].Write.WriteLine("// net " + nodes);
 
 
             ///// Find a way to build the whole network without knowing the network size
             //// List has to merge and resend till everyone has the same copy
             /////// Constantly read input, but stop once last input is transmitted so it can do NetChange algorithm
-
-            string input = Console.ReadLine(); // Just for testing purposes, should be in Program (maybe)
-            while (true)
-            {
-                if (input.StartsWith("// net"))
-                {
-                    List<int> receivednetwork = new List<int>();
-                    receivednetwork.Add(int.Parse(Console.ReadLine()));
-                }
-            }
-
 
 
             // Send Network list info to all neighbours
@@ -68,11 +61,22 @@ namespace MultiClientServer
                     try
                     {
                         Program.Buren.Add(port, new Connection(port)); // Possible exception is thrown here
+                        // Send message info about 
                         retry = false; // Cannot be reached unless there is no exception         
                     }
                     catch { Thread.Sleep(50); } // Pauses for short period before retrying
                 }
             }
+        }
+
+        // Build entire string from Network list
+        private string ListToString(List<int> Networklist)
+        {
+            string nodes = "";
+            for (int t = 0; t < Networklist.Count; t++)
+                nodes += Networklist[t].ToString();
+
+            return nodes;
         }
     }
 }
