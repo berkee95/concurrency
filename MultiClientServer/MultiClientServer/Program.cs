@@ -3,43 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
-using System.Threading;
 
 namespace MultiClientServer
 {
     class Program
     {
         static public int MijnPoort;
+        static public object Locker = new object();
 
-        // static public int[] Network = { 55500, 55501, 55502, 55503, 55504, 55505, 55506, 55507, 55508, 55509, 55510 }; // Find solution to know network size and nodes in it
         static public List<int> Network = new List<int>();
         static public Dictionary<int, Connection> Buren = new Dictionary<int, Connection>();
         static public Dictionary<int, Dictionary<int, int>> NeighbourTable = new Dictionary<int, Dictionary<int, int>>();
         static public Dictionary<int, int> PersonalTable = new Dictionary<int, int>();
         static public Dictionary<int, int> PrefNeighbour = new Dictionary<int, int>();
-        // PrefNeighbour = {destination, neighbour} Dictionary** (key: destination) or List 
-        // DistanceNeighbour (D.w[v]) = {destination, distance} * Neighbours (for one destination v) 
-        // DistanceYou (D.u[v]) = {destination, distance} Dictionary (key: destination)
 
         static void Main(string[] args)
         {
-            Console.Write("Op welke poort ben ik server? ");
 
             Network test = new Network();
-            test.Builder();
+            test.Builder(args); // parameter (args)
 
             //MijnPoort = int.Parse(Console.ReadLine());
             //new Server(MijnPoort);
             //Console.Title = MijnPoort.ToString();
 
-            //Console.WriteLine("Typ [verbind poortnummer] om verbinding te maken, bijvoorbeeld: verbind 1100");
-            //Console.WriteLine("Typ [poortnummer bericht] om een bericht te sturen, bijvoorbeeld: 1100 hoi hoi");
-
             ///////////////////////////
             /////// Initialization ///////
             ////////////////////////////
-            ////////////////
-            ////////////////
+
 
             foreach (int node in Network) // Every Node
             {
@@ -58,11 +49,8 @@ namespace MultiClientServer
             // Buren[neighbour].Write.WriteLine("{0} {1} 0", MijnPoort.ToString(), MijnPoort.ToString());
 
 
-
             // Make threads for Readlines and Writelines
             // Thread.Join
-
-
 
             //////////////////////////////
             /////////////////////////
@@ -72,23 +60,16 @@ namespace MultiClientServer
             while (true)
             {
                 string input = Console.ReadLine();
-                if (input.StartsWith("verbind")) // Remove all this
+                if (input == "R") // testing // RouteTable
                 {
-                    int poort = int.Parse(input.Split()[1]);
-                    if (Buren.ContainsKey(poort))
-                        Console.WriteLine("Hier is al verbinding naar!");
-                    else
-                    {
-                        // Leg verbinding aan (als client)
-                        Buren.Add(poort, new Connection(poort));
-                    }
-                }
-                else if (input == "R") // testing // RouteTable
-                {
-                    foreach (int neighbour in Buren.Keys)
-                        Console.WriteLine(neighbour.ToString());
                     foreach (int node in Network)
-                        Console.WriteLine(node.ToString() + " " + PersonalTable[node].ToString());
+                    {
+                        if (PersonalTable[node] == 0) // for local
+                            Console.WriteLine("{0} {1} local", node.ToString(), PersonalTable[node].ToString());
+                        else
+                            Console.WriteLine("{0} {1} {2}", node.ToString(), PersonalTable[node].ToString(), PrefNeighbour[node]);
+                    }
+
                 }
                 else if (input.StartsWith("B ")) // Sending a message 
                 {
@@ -135,16 +116,6 @@ namespace MultiClientServer
                     string[] message = input.Split(' ');
                     MessageReceiver(int.Parse(message[0]), int.Parse(message[1]), int.Parse(message[2]));
                 }
-                //else
-                //{
-                //    // Stuur berichtje
-                //    string[] delen = input.Split(new char[] { ' ' }, 2);
-                //    int poort = int.Parse(delen[0]);
-                //    if (!Buren.ContainsKey(poort))
-                //        Console.WriteLine("Hier is al verbinding naar!");
-                //    else
-                //        Buren[poort].Write.WriteLine(MijnPoort + ": " + delen[1]);
-                //}
             }
         }
 
@@ -166,13 +137,19 @@ namespace MultiClientServer
 
                 if (distance < Network.Count)
                 {
-                    PersonalTable[destination] = distance;
-                    PrefNeighbour[destination] = route;
+                    lock (Locker)
+                    {
+                        PersonalTable[destination] = distance;
+                        PrefNeighbour[destination] = route;
+                    }
                 }
-                else // Node not connected to network
+                else // Node not connected to active network
                 {
-                    PersonalTable[destination] = Network.Count;
-                    PrefNeighbour[destination] = 404; // null
+                    lock (Locker)
+                    {
+                        PersonalTable[destination] = Network.Count;
+                        PrefNeighbour[destination] = 404; // null
+                    }
                 }
             }
 
@@ -182,7 +159,7 @@ namespace MultiClientServer
                     Buren[neighbour].Write.WriteLine(MijnPoort.ToString() + " " + destination.ToString() + " " + PersonalTable[destination].ToString());
                 // Buren[neighbour].Write.WriteLine("{0} {1} {2}", MijnPoort.ToString(), destination.ToString(), PersonalTable[destination].ToString());
 
-                // afstand message bijgewerkt <>
+                Console.WriteLine("Afstand naar {0} is nu {1} via {2}", destination, PersonalTable[destination], PrefNeighbour[destination]); // afstand message bijgewerkt <>
             }
         }
 
@@ -216,7 +193,7 @@ namespace MultiClientServer
             else
                 NeighbourTable[sender][destination] = distance;
             // if node is new 
-            // if !NeighbourTable.ContainsKey(destination) then add destination to table
+            // if !PersonalTable.ContainsKey(destination) then add destination to table
             // If node 1 send table with new node to node 2 > Add new node to table of node 2 > send all to neighbours
             Recompute(destination);
         }

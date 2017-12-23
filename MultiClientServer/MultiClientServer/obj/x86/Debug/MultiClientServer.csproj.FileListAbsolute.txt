@@ -14,3 +14,8 @@ C:\Users\Xhino\Documents\Visual Studio 2017\Projects\Concurrency\MultiClientServ
 C:\Users\Xhino\Documents\Visual Studio 2017\Projects\Concurrency\MultiClientServer\MultiClientServer\obj\x86\Debug\MultiClientServer.pdb
 C:\Users\Berk\Documents\concurrency\MultiClientServer\MultiClientServer\obj\x86\Debug\MultiClientServer.exe
 C:\Users\Berk\Documents\concurrency\MultiClientServer\MultiClientServer\obj\x86\Debug\MultiClientServer.pdb
+C:\Users\Xhino\Documents\GitHub\concurrency\MultiClientServer\MultiClientServer\bin\Debug\MultiClientServer.exe
+C:\Users\Xhino\Documents\GitHub\concurrency\MultiClientServer\MultiClientServer\bin\Debug\MultiClientServer.pdb
+C:\Users\Xhino\Documents\GitHub\concurrency\MultiClientServer\MultiClientServer\obj\x86\Debug\MultiClientServer.csproj.CoreCompileInputs.cache
+C:\Users\Xhino\Documents\GitHub\concurrency\MultiClientServer\MultiClientServer\obj\x86\Debug\MultiClientServer.exe
+C:\Users\Xhino\Documents\GitHub\concurrency\MultiClientServer\MultiClientServer\obj\x86\Debug\MultiClientServer.pdb

@@ -7,13 +7,12 @@ using System.Threading;
 namespace MultiClientServer
 {
     class Network
-
     {
-        List<int> receivednetwork = new List<int>();
+        // List<int> receivednetwork = new List<int>();
 
-        public void Builder()
+        public void Builder(string[] inputports) // string [] inputports
         {
-            string[] inputports = Console.ReadLine().Split(' ');
+            // string[] inputports = Console.ReadLine().Split(' '); // Remove when parameter implemented
             Program.MijnPoort = int.Parse(inputports[0]);
 
             int[] connectedports = new int[inputports.Length - 1]; // Exclude own port // Possible exception array size[0]
@@ -23,8 +22,9 @@ namespace MultiClientServer
             foreach (string port in inputports)
                 Program.Network.Add(int.Parse(port));
 
-            new Server(Program.MijnPoort); // maybe move to another class
+            new Server(Program.MijnPoort); // Should already be able to receive input here
             Console.Title = Program.MijnPoort.ToString();
+
 
             // Retry connection till it works
             foreach (int port in connectedports)
@@ -61,7 +61,8 @@ namespace MultiClientServer
                     try
                     {
                         Program.Buren.Add(port, new Connection(port)); // Possible exception is thrown here
-                        // Send message info about 
+                        // Send message info about table
+                        // Buren[port].Write.WriteLine(personaltable);
                         retry = false; // Cannot be reached unless there is no exception         
                     }
                     catch { Thread.Sleep(50); } // Pauses for short period before retrying
